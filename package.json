@@ -1,0 +1,14 @@
+{
+  "name": "geojson-flip",
+  "version": "0.1.0",
+  "description": "Flip lon/lat in geojson documents",
+  "main": "flip.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "geojson"
+  ],
+  "author": "eivinhb",
+  "license": "ISC"
+}
