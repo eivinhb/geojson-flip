@@ -64,17 +64,26 @@ describe("Point feature:", function () {
         expect(module.flip(feature).geometry.coordinates).toEqual([10.1, 125.6]);
 
     })
+});
 
-    it("should flip from geometry", function () {
+describe("MultiPoint feature:", function () {
 
-        expect(module.flip(feature.geometry).coordinates).toEqual([10.1, 125.6]);
+    var feature;
 
+    beforeEach(function () {
+        feature = {
+            "type": "Feature",
+            "geometry": {
+                "type": "MultiPoint",
+                "coordinates": [[125.6, 10.1], [125.6, 11.1]]
+            },
+            "properties": {}
+        };
     })
 
-    it("should flip from coordinates", function () {
+    it("should flip from root", function () {
 
-        expect(module.flip(feature.geometry.coordinates)).toEqual([10.1, 125.6]);
+        expect(module.flip(feature).geometry.coordinates).toEqual([[10.1, 125.6], [11.1, 125.6]]);
 
     })
-
 });

@@ -1,28 +1,30 @@
 module.exports.flip = function (json) {
 
-    function flipGeojson(geojson) {
-        var arr = undefined;
+    function flipGeojson(coordinates) {
 
-        if (geojson && geojson.length === 2) {
-            arr = geojson;
-        } else if (geojson.coordinates) {
-            arr = geojson.coordinates;
+        if (coordinates && coordinates.length === 2 && typeof coordinates[0] === 'number') {
+            coordinates.reverse();
         } else {
-            arr = geojson.geometry.coordinates;
+            for (var p = 0; p < coordinates.length; p++) {
+                var coordinate = coordinates[p]
+
+                if (coordinate && coordinate.length === 2 && typeof coordinate[0] === 'number') {
+                    coordinate.reverse();
+                } else {
+                    for (var f = 0; f < coordinate.length; f++) {
+                        coordinate[f].reverse();
+                    }
+                }
+            }
         }
-
-        if (arr)
-            arr.reverse();
-
-        return geojson;
     }
 
     if (json.type && json.type === "FeatureCollection") {
         for (var i = 0; i < json.features.length; i++) {
-            flipGeojson(json.features[i]);
+            flipGeojson(json.features[i].geometry.coordinates);
         }
     } else {
-        return flipGeojson(json);
+        flipGeojson(json.geometry.coordinates);
     }
 
     return json;
