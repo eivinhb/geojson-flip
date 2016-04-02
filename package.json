@@ -13,6 +13,7 @@
   "license": "ISC",
   "repository": "https://github.com/eivinhb/geojson-flip",
   "devDependencies": {
+    "coveralls": "^2.11.9",
     "istanbul": "^0.4.2",
     "jasmine": "^2.4.1",
     "jasmine-node": "^1.14.5",
