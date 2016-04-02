@@ -5,9 +5,7 @@
         function findAllCoordinates(obj) {
             var objects = [];
             for (var i in obj) {
-                if (!obj.hasOwnProperty(i)) {
-                    continue;
-                }
+                if (!obj.hasOwnProperty(i)) continue;
                 if (i === "coordinates") {
                     objects.push(obj[i]);
                 } else if (typeof obj[i] == 'object') {
