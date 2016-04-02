@@ -4,7 +4,7 @@
   "description": "Flip lon/lat in geojson documents",
   "main": "flip.js",
   "scripts": {
-    "test": "istanbul cover jasmine-node --captureExceptions spec/ && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
+    "test": "istanbul cover spec/support/jasmine-runner.js && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
   },
   "keywords": [
     "geojson"
