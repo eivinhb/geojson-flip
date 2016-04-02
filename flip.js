@@ -1,32 +1,41 @@
-module.exports.flip = function (json) {
+(function (exports) {
 
-    function flipGeojson(coordinates) {
+    exports.flip = function (json) {
 
-        if (coordinates && coordinates.length === 2 && typeof coordinates[0] === 'number') {
-            coordinates.reverse();
-        } else {
-            for (var p = 0; p < coordinates.length; p++) {
-                var coordinate = coordinates[p]
+        function findAllCoordinates(obj) {
+            var objects = [];
+            for (var i in obj) {
+                if (!obj.hasOwnProperty(i)) {
+                    continue;
+                }
+                if (i === "coordinates") {
+                    objects.push(obj[i]);
+                } else if (typeof obj[i] == 'object') {
+                    objects = objects.concat(
+                        findAllCoordinates(obj[i])
+                    );
+                }
+            }
+            return objects;
+        }
 
-                if (coordinate && coordinate.length === 2 && typeof coordinate[0] === 'number') {
-                    coordinate.reverse();
-                } else {
-                    for (var f = 0; f < coordinate.length; f++) {
-                        coordinate[f].reverse();
-                    }
+        function flipAllCoordinatesArray(coordinates) {
+            if (coordinates && coordinates.length === 2 && typeof coordinates[0] === 'number') {
+                coordinates.reverse();
+            } else {
+                for (var p = 0; p < coordinates.length; p++) {
+                    flipAllCoordinatesArray(coordinates[p]);
                 }
             }
         }
-    }
 
-    if (json.type && json.type === "FeatureCollection") {
-        for (var i = 0; i < json.features.length; i++) {
-            flipGeojson(json.features[i].geometry.coordinates);
+        var values = findAllCoordinates(json);
+
+        for (var i = 0; i < values.length; i++) {
+            flipAllCoordinatesArray(values[i]);
         }
-    } else {
-        flipGeojson(json.geometry.coordinates);
+
+        return json;
     }
 
-    return json;
-
-}
+})(typeof exports === 'undefined' ? this['geojson-flip'] = {} : exports);
