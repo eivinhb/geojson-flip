@@ -1,6 +1,6 @@
 {
   "name": "geojson-flip",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Flip lon/lat in geojson documents",
   "main": "flip.js",
   "scripts": {
