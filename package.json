@@ -4,7 +4,7 @@
   "description": "Flip lon/lat in geojson documents",
   "main": "flip.js",
   "scripts": {
-    "test": "./node_modules/.bin/jasmine-node test"
+    "test": "node spec/support/jasmine-runner.js"
   },
   "keywords": [
     "geojson"
@@ -13,6 +13,9 @@
   "license": "ISC",
   "repository": "https://github.com/eivinhb/geojson-flip",
   "devDependencies": {
-    "jasmine-node": "^1.14.5"
+    "istanbul": "^0.4.2",
+    "jasmine": "^2.4.1",
+    "jasmine-node": "^1.14.5",
+    "jasmine-spec-reporter": "^2.4.0"
   }
 }
