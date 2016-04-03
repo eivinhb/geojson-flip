@@ -18,7 +18,7 @@ encounter an issue with coordinates on the wrong, then flip em.
 
 ## Usage
 
-```
+```javascript
 var flip = require("geojson-flip").flip;
 
 console.log(
